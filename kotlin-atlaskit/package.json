@@ -1,0 +1,18 @@
+{
+  "name": "@link-time/kotlin-atlaskit",
+  "version": "0.1.0",
+  "description": "Kotlin wrapper for Atlaskit by Atlassian",
+  "files": [
+    "build/classes",
+    "package.json",
+    "README.md"
+  ],
+  "main": "build/classes/main/kotlin-atlaskit.js",
+  "repository": "https://github.com/link-time/kolin-wrappers",
+  "peerDependencies": {
+    "kotlin": "^$kotlin_version",
+    "react": ">=$react_version"
+  },
+  "author": "Alexander Weickmann",
+  "license": "Apache-2-0"
+}
