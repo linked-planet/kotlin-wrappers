@@ -3,7 +3,13 @@ val reactVersion = property("react_version")
 version = "0.1.0-SNAPSHOT"
 
 apply<ApplyKotlinJs>()
+apply<MavenCentralPublish>()
 apply<ConfigureNpmPublish>()
+
+configure<MavenCentralPublishExtension> {
+    name = "Kotlin Atlaskit"
+    description = "Kotlin wrapper for Atlaskit by Atlassian."
+}
 
 plugins {
     id("kotlin2js")

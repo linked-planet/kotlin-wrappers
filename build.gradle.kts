@@ -6,6 +6,10 @@ buildscript {
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("com.github.node-gradle:gradle-node-plugin:1.5.3")
+        classpath("com.bmuschko:gradle-nexus-plugin:2.3.1")
+        classpath("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.0")
+        classpath("nu.studer:gradle-credentials-plugin:1.0.7")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:0.9.18")
     }
 }
 
