@@ -7,8 +7,8 @@ task("processPkg", Copy::class) {
     into("build/npm")
     include("package.json")
     expand(mapOf(
-            "kotlin_version" to property("kotlin_version"),
-            "react_version" to property("react_version")
+            "kotlin_version" to project.property("kotlin_version"),
+            "react_version" to project.property("react_version")
     ))
 }
 
