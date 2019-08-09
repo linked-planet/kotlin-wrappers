@@ -40,7 +40,7 @@ modifyPom(closureOf<MavenPom> {
         withGroovyBuilder {
             "name"(extension.name)
             "description"(extension.description)
-            "url"("https://github.com/link-time/kolin-wrappers/tree/master/${project.name}")
+            "url"("https://github.com/link-time/kotlin-wrappers/tree/master/${project.name}")
             "inceptionYear"("2019")
             "licenses" {
                 "license" {
@@ -59,9 +59,9 @@ modifyPom(closureOf<MavenPom> {
                 }
             }
             "scm" {
-                "url"("https://github.com/link-time/kolin-wrappers/tree/master/${project.name}")
-                "connection"("scm:git:git://github.com/link-time/kolin-wrappers.git")
-                "developerConnection"("scm:git:git://github.com/link-time/kolin-wrappers.git")
+                "url"("https://github.com/link-time/kotlin-wrappers/tree/master/${project.name}")
+                "connection"("scm:git:git://github.com/link-time/kotlin-wrappers.git")
+                "developerConnection"("scm:git:git://github.com/link-time/kotlin-wrappers.git")
             }
         }
     }

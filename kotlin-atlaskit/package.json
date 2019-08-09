@@ -8,7 +8,7 @@
     "README.md"
   ],
   "main": "build/classes/main/kotlin-atlaskit.js",
-  "repository": "https://github.com/link-time/kolin-wrappers",
+  "repository": "https://github.com/link-time/kotlin-wrappers",
   "peerDependencies": {
     "kotlin": "^$kotlin_version",
     "react": ">=$react_version"
