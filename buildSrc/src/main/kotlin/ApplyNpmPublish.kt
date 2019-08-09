@@ -3,7 +3,7 @@ import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.task
 import org.gradle.kotlin.dsl.withGroovyBuilder
 
-fun Project.applyNpmPublish() {
+fun Project.applyNpmPublishing() {
     apply<Project> {
         apply {
             plugin("com.github.node-gradle.node")
@@ -19,11 +19,12 @@ fun Project.applyNpmPublish() {
             ))
         }
 
-        task("prepublish", Copy::class) {
+        task("npmPrepublish", Copy::class) {
             from(".")
             into("build/npm")
             exclude("package.json")
             exclude("build/npm")
+            exclude("build/javadoc")
         }
 
         tasks.getByName("npm_publish") {
@@ -35,8 +36,8 @@ fun Project.applyNpmPublish() {
             }
         }
 
-        tasks.getByName("npm_publish").dependsOn("prepublish")
+        tasks.getByName("npm_publish").dependsOn("npmPrepublish")
         tasks.getByName("npm_publish").dependsOn("processPkg")
-        tasks.getByName("prepublish").dependsOn("build")
+        tasks.getByName("npmPrepublish").dependsOn("build")
     }
 }

@@ -7,7 +7,6 @@ applyKotlinJs(
                 "org.jetbrains:kotlin-react:$reactVersion-pre.80-kotlin-1.3.41"
         )
 )
-applyMavenCentralPublish(
+applyAllPublishing(
         name = "Kotlin Atlaskit",
         description = "Kotlin wrapper for Atlaskit by Atlassian.")
-applyNpmPublish()

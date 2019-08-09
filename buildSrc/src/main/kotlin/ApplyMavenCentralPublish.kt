@@ -2,13 +2,14 @@ import com.bmuschko.gradle.nexus.ExtraArchivePluginExtension
 import groovy.lang.Closure
 import nu.studer.gradle.credentials.domain.CredentialsContainer
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.artifacts.maven.MavenPom
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.*
 import org.gradle.plugins.signing.Sign
 import org.jetbrains.dokka.gradle.DokkaTask
 
-fun Project.applyMavenCentralPublish(name: String, description: String) {
+fun Project.applyMavenCentralPublishing(name: String, description: String) {
     apply<Project> {
         extra.apply {
             set("gnsp.disableApplyOnlyOnRootProjectEnforcement", true)
@@ -80,7 +81,7 @@ fun Project.applyMavenCentralPublish(name: String, description: String) {
             javadoc = false
         }
 
-        tasks.register("dokkaJavadoc", DokkaTask::class) {
+        task("dokkaJavadoc", DokkaTask::class) {
             impliedPlatforms = mutableListOf("common")
             kotlinTasks {
                 // dokka fails to retrieve sources from MPP-tasks so they must
@@ -96,15 +97,19 @@ fun Project.applyMavenCentralPublish(name: String, description: String) {
             reportUndocumented = false
         }
 
-        tasks.register("javadocJar", Jar::class) {
+        task("javadocJar", Jar::class) {
             dependsOn("dokkaJavadoc")
             classifier = "javadoc"
             from("$buildDir/javadoc")
         }
 
-        tasks.register("sourcesJar", Jar::class) {
+        task("sourcesJar", Jar::class) {
             classifier = "sources"
             from("src/main/kotlin")
+        }
+
+        task("mavenPrepublish", Task::class) {
+            dependsOn("install")
         }
     }
 }
