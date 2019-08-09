@@ -1,21 +1,17 @@
 buildscript {
-    project.apply {
-        from("versions.gradle.kts")
-    }
-    val kotlinVersion = project.property("kotlin_version").toString()
+    project.apply { from("versions.gradle.kts") }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("com.github.node-gradle:gradle-node-plugin:1.5.3")
-        classpath("com.bmuschko:gradle-nexus-plugin:2.3.1")
-        classpath("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.0")
-        classpath("nu.studer:gradle-credentials-plugin:1.0.7")
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:0.9.18")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${property("kotlin_version")}")
+        classpath("com.github.node-gradle:gradle-node-plugin:${property("gradle_node_plugin_version")}")
+        classpath("com.bmuschko:gradle-nexus-plugin:${property("gradle_nexus_plugin_version")}")
+        classpath("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:${property("gradle_nexus_staging_plugin_version")}")
+        classpath("nu.studer:gradle-credentials-plugin:${property("gradle_credentials_plugin_version")}")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:${property("dokka_gradle_plugin_version")}")
     }
 }
 
 plugins {
     id("com.github.hierynomus.license") version "0.15.0"
-    id("com.github.hierynomus.license-report") version "0.15.0"
     id("com.github.ben-manes.versions") version "0.21.0"
 }
 

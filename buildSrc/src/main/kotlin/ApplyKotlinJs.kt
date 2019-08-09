@@ -1,28 +1,25 @@
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withGroovyBuilder
 
-class ApplyKotlinJs : Plugin<Project> {
+fun Project.applyKotlinJs(dependencies: List<String>) {
+    val kotlinVersion = property("kotlin_version")
 
-    override fun apply(target: Project) {
-        target.apply<Project> {
-            val kotlinVersion = property("kotlin_version")
-            dependencies.add(
-                    "implementation",
-                    "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion")
+    apply {
+        plugin("kotlin2js")
+    }
 
-            tasks.getByName("compileKotlin2Js") {
-                withGroovyBuilder {
-                    "kotlinOptions" {
-                        "setMetaInfo"(true)
-                        "setOutputFile"("${project.buildDir.path}/classes/main/${project.name}.js")
-                        "setModuleKind"("commonjs")
-                        "setSourceMap"(true)
-                        "setSourceMapEmbedSources"("always")
-                    }
-                }
+    val allDependencies = dependencies + "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion"
+    allDependencies.forEach { this.dependencies.add("implementation", it) }
+
+    tasks.getByName("compileKotlin2Js") {
+        withGroovyBuilder {
+            "kotlinOptions" {
+                "setMetaInfo"(true)
+                "setOutputFile"("${project.buildDir.path}/classes/main/${project.name}.js")
+                "setModuleKind"("commonjs")
+                "setSourceMap"(true)
+                "setSourceMapEmbedSources"("always")
             }
         }
     }
-
 }

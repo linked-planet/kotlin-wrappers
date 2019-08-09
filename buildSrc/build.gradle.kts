@@ -1,3 +1,5 @@
+apply { from("../versions.gradle.kts") }
+
 plugins {
     `kotlin-dsl`
 }
@@ -12,6 +14,7 @@ kotlinDslPluginOptions {
 }
 
 dependencies {
-    implementation("nu.studer:gradle-credentials-plugin:1.0.7")
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:0.9.18")
+    implementation("nu.studer:gradle-credentials-plugin:${property("gradle_credentials_plugin_version")}")
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:${property("dokka_gradle_plugin_version")}")
+    implementation("com.bmuschko:gradle-nexus-plugin:${property("gradle_nexus_plugin_version")}")
 }
